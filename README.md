@@ -53,9 +53,10 @@ resulting cohorts. It is structured like the
    devtools::install(".")
    ```
 
-3. Add the ATLAS cohort definition JSON files to `inst/cohorts/` (`<cohortId>.json` for ids 1-8
-   and 10-12) and reinstall. If `inst/sql/sql_server/<cohortId>.sql` is absent, the SQL is built
-   from the JSON with CirceR.
+3. Add the ATLAS cohort definition JSON files to `inst/cohorts/`, named by ATLAS id
+   (`<atlasId>.json`, see the `atlasId` column of `inst/settings/CohortsToCreate.csv`), and
+   reinstall. If `inst/sql/sql_server/<atlasId>.sql` is absent, the SQL is built from the JSON
+   with CirceR.
 
 ## How to run
 
@@ -116,7 +117,7 @@ Each analytical function lives in its own file under `R/`, with inline documenta
 
 Supporting resources under `inst/`:
 
-- `inst/cohorts/` — Circe cohort definitions (JSON).
+- `inst/cohorts/` — Circe cohort definitions (JSON), named `<atlasId>.json`.
 - `inst/sql/sql_server/` — SQL for the derivation, intersection and time-to-event steps.
 - `inst/settings/CohortsToCreate.csv` — base cohorts to generate (ids 1-8, 10-12).
 - `inst/settings/DerivedCohorts.csv` — derived cohorts (101-107) with their anchor and target cohort.
@@ -126,16 +127,17 @@ Supporting resources under `inst/`:
 
 ## Cohorts
 
-**Base cohorts** (`inst/settings/CohortsToCreate.csv`):
+**Base cohorts** (`inst/settings/CohortsToCreate.csv`; `id` is the study cohort id written to the cohort
+table, the ATLAS id is the `atlasId` column):
 
-| id | Cohort | id | Cohort |
-|----|--------|----|--------|
-| 1 | Prostate cancer | 7 | Initiation of radioligand therapy |
-| 2 | Metastasis | 8 | Initiation of triptorelin |
-| 3 | Initiation of ADT | 10 | Hypertension (outcome) |
-| 4 | Initiation of ARPI | 11 | Hospitalization (outcome) |
-| 5 | Initiation of chemotherapy | 12 | Death (outcome) |
-| 6 | Initiation of BPA | | |
+| id | ATLAS id | Cohort | id | ATLAS id | Cohort |
+|----|----------|--------|----|----------|--------|
+| 1 | 1835 | Prostate cancer | 7 | 1842 | Initiation of radioligand therapy |
+| 2 | 1837 | Metastasis | 8 | 1843 | Initiation of triptorelin |
+| 3 | 1838 | Initiation of ADT | 10 | 1324 | Hypertension (outcome) |
+| 4 | 1839 | Initiation of ARPI | 11 | 1813 | Hospitalization (outcome) |
+| 5 | 1840 | Initiation of chemotherapy | 12 | 1801 | Death (outcome) |
+| 6 | 1841 | Initiation of BPA | | | |
 
 **Derived cohorts** (`inst/settings/DerivedCohorts.csv`):
 

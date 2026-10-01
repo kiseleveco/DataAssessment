@@ -65,7 +65,8 @@ options(sqlRenderTempEmulationSchema = NULL)
 # ------------------------------------------------------------------------------
 # 3. Cohort definition ids  (inst/settings/*.csv; definitions in inst/cohorts/)
 #
-#   Base cohorts      (CohortsToCreate.csv)
+#   Base cohorts      (CohortsToCreate.csv; ATLAS ids in the atlasId column, JSON/SQL in
+#                      inst/cohorts/<atlasId>.json and inst/sql/sql_server/<atlasId>.sql)
 #     1 Prostate cancer         2 Metastasis             3 ADT initiation
 #     4 ARPI initiation         5 Chemotherapy initiation 6 BPA initiation
 #     7 Radioligand initiation  8 Triptorelin initiation

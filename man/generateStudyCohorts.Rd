@@ -51,9 +51,11 @@ definitions.}
 Generates the base study cohorts (ids 1-8 and 10-12) using the
 \pkg{CohortGenerator} package. Cohort definitions are read from
 \code{inst/settings/CohortsToCreate.csv}, \code{inst/cohorts/} (ATLAS JSON,
-\code{<cohortId>.json}) and, when present, \code{inst/sql/sql_server/}
-(\code{<cohortId>.sql}). When a SQL file is missing the SQL is built from the
-JSON with CirceR.
+\code{<atlasId>.json}) and, when present, \code{inst/sql/sql_server/}
+(\code{<atlasId>.sql}). The \code{cohortId} column is the study id written to
+the cohort table; \code{atlasId} is the ATLAS cohort definition id used to name
+the files (it falls back to \code{cohortId} when empty). When a SQL file is
+missing the SQL is built from the JSON with CirceR.
 }
 \details{
 When \code{includeCohortStats = TRUE} the cohort SQL is rebuilt from the Circe

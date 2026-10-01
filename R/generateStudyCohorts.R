@@ -19,9 +19,11 @@
 #' Generates the base study cohorts (ids 1-8 and 10-12) using the
 #' \pkg{CohortGenerator} package. Cohort definitions are read from
 #' \code{inst/settings/CohortsToCreate.csv}, \code{inst/cohorts/} (ATLAS JSON,
-#' \code{<cohortId>.json}) and, when present, \code{inst/sql/sql_server/}
-#' (\code{<cohortId>.sql}). When a SQL file is missing the SQL is built from the
-#' JSON with CirceR.
+#' \code{<atlasId>.json}) and, when present, \code{inst/sql/sql_server/}
+#' (\code{<atlasId>.sql}). The \code{cohortId} column is the study id written to
+#' the cohort table; \code{atlasId} is the ATLAS cohort definition id used to name
+#' the files (it falls back to \code{cohortId} when empty). When a SQL file is
+#' missing the SQL is built from the JSON with CirceR.
 #'
 #' When \code{includeCohortStats = TRUE} the cohort SQL is rebuilt from the Circe
 #' JSON expressions using \code{CirceR::buildCohortQuery(..., generateStats = TRUE)}
@@ -142,29 +144,37 @@ generateStudyCohorts <- function(connectionDetails,
 }
 
 # Cohort definition set (cohortId, cohortName, sql, json) of the base cohorts.
-# JSON is inst/cohorts/<cohortId>.json; SQL is inst/sql/sql_server/<cohortId>.sql
-# when it exists (and rebuildSql is FALSE), otherwise it is built from the JSON.
+# cohortId is the study id written to the cohort table; atlasId (CohortsToCreate.csv)
+# is the ATLAS cohort definition id used to name the files. JSON is
+# inst/cohorts/<atlasId>.json; SQL is inst/sql/sql_server/<atlasId>.sql when it exists
+# (and rebuildSql is FALSE), otherwise it is built from the JSON. A missing atlasId
+# falls back to the cohortId.
 loadStudyCohortDefinitionSet <- function(packageName = "DataAssessment", rebuildSql = FALSE) {
   settings <- readSettings("CohortsToCreate.csv", packageName)
+  atlasId <- if ("atlasId" %in% names(settings)) settings$atlasId else rep(NA, nrow(settings))
+  atlasId <- ifelse(is.na(atlasId), settings$cohortId, atlasId)
+
   cohortDefinitionSet <- data.frame(
-    cohortId   = as.double(settings$atlasId),
+    cohortId   = as.double(settings$cohortId),
     cohortName = settings$cohort_name,
+    atlasId    = atlasId,
     stringsAsFactors = FALSE
   )
 
-  jsonFiles <- file.path(system.file("cohorts", package = packageName), paste0(settings$cohortId, ".json"))
-  missingJson <- settings$cohortId[!file.exists(jsonFiles)]
+  jsonFiles <- file.path(system.file("cohorts", package = packageName), paste0(atlasId, ".json"))
+  missingJson <- which(!file.exists(jsonFiles))
   if (length(missingJson) > 0) {
     stop(
-      "Cohort definition JSON not found for cohort ids: ", paste(missingJson, collapse = ", "),
-      ". Add '<cohortId>.json' files to inst/cohorts/ and reinstall the package."
+      "Cohort definition JSON not found for ATLAS cohort id(s): ",
+      paste0(atlasId[missingJson], " (cohort ", settings$cohortId[missingJson], ")", collapse = ", "),
+      ". Add '<atlasId>.json' files to inst/cohorts/ and reinstall the package."
     )
   }
   cohortDefinitionSet$json <- vapply(
     jsonFiles, function(f) paste(readLines(f, warn = FALSE), collapse = "\n"), character(1), USE.NAMES = FALSE
   )
 
-  sqlFiles <- file.path(system.file("sql", "sql_server", package = packageName), paste0(settings$cohortId, ".sql"))
+  sqlFiles <- file.path(system.file("sql", "sql_server", package = packageName), paste0(atlasId, ".sql"))
   cohortDefinitionSet$sql <- vapply(seq_along(sqlFiles), function(i) {
     if (!rebuildSql && file.exists(sqlFiles[i])) {
       SqlRender::readSql(sqlFiles[i])
