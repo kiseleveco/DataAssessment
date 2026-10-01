@@ -34,7 +34,7 @@ library(DataAssessment)
 # ------------------------------------------------------------------------------
 source("../credentials.r")
 
-JDBC <- "/path/to/jdbc"
+JDBC <- "/home/a_kiselev/Jdbc"
 connectionDetails <- DatabaseConnector::createConnectionDetails(
   dbms         = DBMS,
   user         = USER,
@@ -47,15 +47,15 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(
 # ------------------------------------------------------------------------------
 # 2. Schema and table names
 # ------------------------------------------------------------------------------
-cdmDatabaseSchema        <- "cdm"                      # read-only CDM
+cdmDatabaseSchema        <- "marketscan_ccaemdcr_prod_merged"                      # read-only CDM
 vocabularyDatabaseSchema <- cdmDatabaseSchema          # usually same as CDM
-cohortDatabaseSchema     <- "results"                  # write-enabled; needs read/write/delete
+cohortDatabaseSchema     <- "marketscan_ccaemdcr_aug2025_results"                  # write-enabled; needs read/write/delete
 cohortTable              <- "cohortDataAssessment"
-cohortTableNew           <- "cohortTableNew"
+cohortTableNew           <- "cohortTableNewDataAssessment"
 
-databaseId          <- "MyDatabase"                    # short identifier, no spaces
-databaseName        <- "My database"
-databaseDescription <- "My database description"
+databaseId          <- "MarketScan"                    # short identifier, no spaces
+databaseName        <- "MarketScan"
+databaseDescription <- "MarketScan"
 
 outputFolder <- file.path("output", paste0(databaseId, "_DataAssessment_v0.1"))
 

@@ -147,7 +147,7 @@ generateStudyCohorts <- function(connectionDetails,
 loadStudyCohortDefinitionSet <- function(packageName = "DataAssessment", rebuildSql = FALSE) {
   settings <- readSettings("CohortsToCreate.csv", packageName)
   cohortDefinitionSet <- data.frame(
-    cohortId   = as.double(settings$cohortId),
+    cohortId   = as.double(settings$atlasId),
     cohortName = settings$cohort_name,
     stringsAsFactors = FALSE
   )

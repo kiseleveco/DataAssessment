@@ -1,11 +1,11 @@
 library(ROhdsiWebApi)
 base.url <- "https://pioneer.hzdr.de/WebAPI"
-token <- "Bearer "
+token <- "Bearer"
 
 ROhdsiWebApi::setAuthHeader(base.url, token)
 ROhdsiWebApi::insertCohortDefinitionSetInPackage(fileName = "inst/settings/CohortsToCreate.csv",
                                                  baseUrl = base.url,
-                                                 packageName = "PioneerBPA")
+                                                 packageName = "DataAssessment")
 
 cohort_json <- getCohortDefinition(cohortId = 262, baseUrl = base.url)
 
