@@ -1,0 +1,36 @@
+Package: DataAssessment
+Type: Package
+Title: OHDSI Data Assessment of a Prostate Cancer Treatment Cohort Cascade
+Version: 0.1.0
+Authors@R: person("Andrei", "Kiselev", email = "kiselev.eco@gmail.com", role = c("aut", "cre"))
+Description: Assesses patient counts in an OMOP CDM database by building a
+    cascade of simple and intersected cohorts (prostate cancer, metastasis,
+    androgen deprivation therapy and subsequent treatments), reporting
+    intersections, binned index-date differences, Kaplan-Meier event
+    probabilities for hypertension, hospitalization and death, and a light
+    CohortDiagnostics run. Designed for federated network use with small cell
+    count censoring.
+License: Apache License 2.0
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.3.0)
+Imports:
+    CirceR,
+    CohortDiagnostics (>= 3.4.2),
+    CohortGenerator (>= 1.1.0),
+    DatabaseConnector (>= 7.1.0),
+    FeatureExtraction (>= 3.13.0),
+    ParallelLogger (>= 3.3.0),
+    SqlRender (>= 1.19.5),
+    checkmate (>= 2.3.4),
+    readr (>= 2.2.0),
+    survival (>= 3.5.0),
+    utils,
+    zip
+Suggests:
+    DBI,
+    duckdb,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

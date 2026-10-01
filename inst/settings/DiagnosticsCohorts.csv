@@ -1,0 +1,9 @@
+cohortId,cohortName,indexEventCohortId
+1,Prostate cancer,1
+101,Prostate cancer + metastasis,2
+102,Prostate cancer + metastasis + ADT,3
+103,Prostate cancer + metastasis + ADT + ARPI,4
+104,Prostate cancer + metastasis + ADT + chemotherapy,5
+105,Prostate cancer + metastasis + ADT + BPA,6
+106,Prostate cancer + metastasis + ADT + radioligand therapy,7
+107,Prostate cancer + metastasis + ADT + triptorelin,8

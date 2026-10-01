@@ -1,0 +1,12 @@
+cohort_name,cohortId,atlasId
+Prostate cancer,1,1835
+Metastasis,2,1837
+Initiation of ADT,3,1838
+Initiation of ARPI,4,1839
+Initiation of chemotherapy,5,1840
+Initiation of BPA,6,1841
+Initiation of radioligand therapy,7,1842
+Initiation of triptorelin,8,1843
+Hypertension,10,1324
+Hospitalization,11,1813
+Death,12,1801

@@ -1,0 +1,8 @@
+analysisId,cohortId,cohortName,anchorCohortId,targetCohortId,cohortDescription
+1,101,Prostate cancer + metastasis,1,2,"Persons in cohort 1 and cohort 2 whose metastasis index date is >= -90 days from the prostate cancer index date. Cohort start is the metastasis index date."
+2,102,Prostate cancer + metastasis + ADT,101,3,"Persons in cohort 101 and cohort 3 whose ADT initiation is >= -90 days from the cohort 101 index date. Cohort start is the ADT initiation date."
+3,103,Prostate cancer + metastasis + ADT + ARPI,102,4,"Persons in cohort 102 and cohort 4 whose ARPI initiation is >= -90 days from the cohort 102 index date. Cohort start is the ARPI initiation date."
+3,104,Prostate cancer + metastasis + ADT + chemotherapy,102,5,"Persons in cohort 102 and cohort 5 whose chemotherapy initiation is >= -90 days from the cohort 102 index date. Cohort start is the chemotherapy initiation date."
+3,105,Prostate cancer + metastasis + ADT + BPA,102,6,"Persons in cohort 102 and cohort 6 whose BPA initiation is >= -90 days from the cohort 102 index date. Cohort start is the BPA initiation date."
+3,106,Prostate cancer + metastasis + ADT + radioligand therapy,102,7,"Persons in cohort 102 and cohort 7 whose radioligand therapy initiation is >= -90 days from the cohort 102 index date. Cohort start is the radioligand therapy initiation date."
+3,107,Prostate cancer + metastasis + ADT + triptorelin,102,8,"Persons in cohort 102 and cohort 8 whose triptorelin initiation is >= -90 days from the cohort 102 index date. Cohort start is the triptorelin initiation date."

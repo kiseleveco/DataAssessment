@@ -1,0 +1,10 @@
+target_id,target_name,outcome_id,outcome_name,episodic,chronic,cap_at_observation_end
+1,Prostate cancer,10,Hypertension,1,0,1
+1,Prostate cancer,11,Hospitalization,1,0,1
+1,Prostate cancer,12,Death,1,0,0
+101,Prostate cancer + metastasis,10,Hypertension,1,0,1
+101,Prostate cancer + metastasis,11,Hospitalization,1,0,1
+101,Prostate cancer + metastasis,12,Death,1,0,0
+102,Prostate cancer + metastasis + ADT,10,Hypertension,1,0,1
+102,Prostate cancer + metastasis + ADT,11,Hospitalization,1,0,1
+102,Prostate cancer + metastasis + ADT,12,Death,1,0,0
