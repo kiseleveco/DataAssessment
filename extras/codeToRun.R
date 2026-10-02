@@ -83,7 +83,7 @@ maxDays <- Inf
 # 4. Run options
 # ------------------------------------------------------------------------------
 minCellCount            <- 5       # counts below this are censored in all exported files
-includeCohortStats      <- FALSE
+includeCohortStats      <- TRUE
 incrementalCohorts      <- TRUE
 generateCohorts         <- TRUE
 createDerivedCohorts    <- TRUE
